@@ -274,9 +274,8 @@ jobjectArray  getSafeData(JNIEnv *env, jclass classObject, jobject context) {
         return NULL;
     }
 
-    jclass Cls = env->FindClass("java/lang/Object");
-    jobjectArray Array = env->NewObjectArray((jsize)info.height, Cls , 0);
-
+    jclass Cls = env->FindClass("java/lang/String");
+    jobjectArray result = env->NewObjectArray((jsize)info.height, Cls , env->NewStringUTF(""));
 
     for (int y = 0; y < info.height; ++y) {
         char *pstr = (char *) malloc((info.width + 1)*sizeof(char *));
