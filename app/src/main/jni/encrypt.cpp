@@ -300,14 +300,14 @@ jobjectArray  getSafeData(JNIEnv *env, jclass classObject, jobject context) {
         }
         pstr[x] = '\0';
         jstring ivalue = env->NewStringUTF(pstr);
-        env->SetObjectArrayElement(Array,y,ivalue);
+        env->SetObjectArrayElement(result,y,ivalue);
         free(pstr);
     }
 
     AndroidBitmap_unlockPixels(env,bitmap);
 
-    char * check = jstringToChar(env,(jstring)env->GetObjectArrayElement(Array,info.height-1));
+    char * check = jstringToChar(env,(jstring)env->GetObjectArrayElement(result,info.height-1));
     if(0 != strcmp(KA,check))
         return NULL;
-    return Array;
+    return result;
 }
